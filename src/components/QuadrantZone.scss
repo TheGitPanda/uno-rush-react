@@ -3,7 +3,8 @@
   position: absolute;
   width: 50%;
   height: 50%;
-
+  overflow: hidden;
+  
   &.z-1 {
     left: 0;
     top: 0;
@@ -18,7 +19,7 @@
     right: 0;
     bottom: 0;
   }
-  
+
   &.z-4 {
     left: 0;
     bottom: 0;

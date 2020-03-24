@@ -1,0 +1,52 @@
+.card {
+  display: block;
+  position: relative;
+  height: 160px;
+  width: 110px;
+  background: red;
+  color: white;
+  box-sizing: border-box;
+  border: white solid 5px;
+
+  &__wrapper {
+    overflow: hidden;
+    max-width: 60px;
+
+    &:nth-child(8) {
+      min-width: 20px;
+    }
+
+    &:nth-child(7) {
+      min-width: 10px;
+    }
+
+    &:nth-child(n+9) {
+      min-width: 30px;
+    }
+
+    &:last-child {
+      overflow: visible;
+    }
+
+    @for $i from 1 through 8 {
+      &:nth-child(#{$i}) {
+        z-index: #{$i};
+      }
+    }
+  }
+
+  &:before {
+    padding-top: 100%;
+  }
+}
+
+.z-2,
+.z-3 {
+  .card__wrapper {
+    @for $i from 1 through 8 {
+      &:nth-child(#{$i}) {
+        z-index: #{9 - $i};
+      }
+    }
+  }
+}
