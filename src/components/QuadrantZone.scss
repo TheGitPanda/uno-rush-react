@@ -1,0 +1,26 @@
+.quadrantZone {
+  display: block;
+  position: absolute;
+  width: 50%;
+  height: 50%;
+
+  &.z-1 {
+    left: 0;
+    top: 0;
+  }
+
+  &.z-2 {
+    right: 0;
+    top: 0;
+  }
+
+  &.z-3 {
+    right: 0;
+    bottom: 0;
+  }
+  
+  &.z-4 {
+    left: 0;
+    bottom: 0;
+  }
+}
