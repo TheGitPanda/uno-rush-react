@@ -7,8 +7,8 @@ export default class Deck extends React.Component {
   render() {
     return (
       <div className="deck">
-        <div class="deck__rotator">
-          <div class="deck__container">
+        <div className="deck__rotator">
+          <div className="deck__container">
           <Card />
           <Card />
           <Card />

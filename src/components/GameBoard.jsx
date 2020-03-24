@@ -1,6 +1,7 @@
 import React from 'react'
 import './GameBoard.scss'
 import QuadrantZone from './QuadrantZone'
+import DebugPanel from './debug/Panel'
 
 export default class GameBoard extends React.Component {
   render() {
@@ -10,6 +11,8 @@ export default class GameBoard extends React.Component {
       <QuadrantZone name="Bradley" position="2" />
       <QuadrantZone name="Bradley" position="3" />
       <QuadrantZone name="Bradley" position="4" />
+
+      <DebugPanel content={ JSON.stringify(this.props.deck, null, 2) } />
       </>
     );
   }

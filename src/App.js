@@ -1,6 +1,7 @@
 import React from 'react';
 import GameBoard from './components/GameBoard'
 import gameSettings from './gameSettings'
+import generateDeck from './helpers/generate-deck'
 
 export default class App extends React.Component {
   constructor (props) {
@@ -11,7 +12,7 @@ export default class App extends React.Component {
 
   render () {
     return (
-      <GameBoard />
+      <GameBoard deck={ generateDeck(gameSettings.deck.ingredients) } />
     );
   }
 }

@@ -6,7 +6,10 @@ export default class Card extends React.Component {
     return (
       <div className="card__wrapper">
         <div className="card">
-        2
+          <div className="card__figure">1</div>
+          <div className="card__figure">1</div>
+          <div className="card__figure">1</div>
+          <div className="card__figure">1</div>
         </div>
       </div>
     );

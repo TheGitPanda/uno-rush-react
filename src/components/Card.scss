@@ -9,6 +9,7 @@
   border: white solid 5px;
 
   &__wrapper {
+    position: relative;
     overflow: hidden;
     max-width: 60px;
 
@@ -38,15 +39,38 @@
   &:before {
     padding-top: 100%;
   }
+
+  &__figure {
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 5px;
+
+    &:nth-child(1),
+    &:nth-child(2) {
+      top: 0;
+    }
+
+    &:nth-child(3),
+    &:nth-child(4) {
+      bottom: 0;
+    }
+
+    &:nth-child(1),
+    &:nth-child(3) {
+      left: 0;
+    }
+
+    &:nth-child(2),
+    &:nth-child(4) {
+      right: 0;
+    }
+  }
 }
 
 .z-2,
 .z-3 {
-  .card__wrapper {
-    @for $i from 1 through 8 {
-      &:nth-child(#{$i}) {
-        z-index: #{9 - $i};
-      }
-    }
+  .card {
+    left: -51px;
   }
 }
