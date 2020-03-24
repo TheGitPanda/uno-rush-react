@@ -1,18 +1,26 @@
-import React from 'react';
-import GameBoard from './components/GameBoard/GameBoard'
+import React from 'react'
+import './App.scss'
+import './Base.scss'
+import QuadrantZone from './components/QuadrantZone/QuadrantZone'
+import DebugPanel from './components/DebugPanel/DebugPanel'
 import gameSettings from './gameSettings'
 import generateDeck from './helpers/generate-deck'
+import { onEvent } from './helpers/events'
 
-export default class App extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {}
-    this.state.settings = gameSettings
-  }
+export default function App() {
 
-  render () {
-    return (
-      <GameBoard deck={ generateDeck(gameSettings.deck.ingredients) } />
-    );
-  }
+  onEvent('Card/clicked', (id) => {
+    console.log(`a card was clicked called ${id}`)
+  })
+
+  return (
+    <>
+    <QuadrantZone name="Bradley" position="1" />
+    <QuadrantZone name="Bradley" position="2" />
+    <QuadrantZone name="Bradley" position="3" />
+    <QuadrantZone name="Bradley" position="4" />
+
+    <DebugPanel content={ JSON.stringify( generateDeck(gameSettings.deck.ingredients) , null, 2) } />
+    </>
+  )
 }
