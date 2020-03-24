@@ -40,16 +40,16 @@
 }
 
 // Layout overrides
-.z-2,
-.z-3 {
+.z-1,
+.z-2 {
 
   .playerDeck__container {
     flex-direction: row-reverse;
   }
 }
 
-.z-3,
-.z-4 {
+.z-2,
+.z-3 {
 
   .playerDeck__rotator,
   .playerDeck__container {
@@ -58,13 +58,13 @@
   }
 }
 
-.z-1 {
+.z-0 {
   .playerDeck {
     transform: translateX(-60%) translateY(-85%);
   }
 }
 
-.z-2 {
+.z-1 {
   .playerDeck {
     transform: translateX(-40%) translateY(-85%);
   }
@@ -75,7 +75,7 @@
   }
 }
 
-.z-3 {
+.z-2 {
   .playerDeck {
     transform: translateX(-40%) translateY(-15%);
   }
@@ -86,7 +86,7 @@
   }
 }
 
-.z-4 {
+.z-3 {
   .playerDeck {
     transform: translateX(-60%) translateY(-15%);
   }

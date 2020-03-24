@@ -13,14 +13,14 @@ export default class Card extends React.Component {
   }
 
   render() {
-    console.log('updated')
     return (
       <div className={ `card__wrapper${this.state.flipped ? ' flipped' : ''}` } onClick={() => this.handleClick(this.state.value)}>
-        <div className="card">
-          <div className="card__figure">{ this.state.value }</div>
-          <div className="card__figure">{ this.state.value }</div>
-          <div className="card__figure">{ this.state.value }</div>
-          <div className="card__figure">{ this.state.value }</div>
+        <div className={`card ${this.props.content.color}`}>
+          { this.props.type }
+          <div className="card__figure">{ this.props.content.value }</div>
+          <div className="card__figure">{ this.props.content.value }</div>
+          <div className="card__figure">{ this.props.content.value }</div>
+          <div className="card__figure">{ this.props.content.value }</div>
         </div>
       </div>
     );

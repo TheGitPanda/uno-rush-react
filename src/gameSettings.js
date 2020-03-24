@@ -1,16 +1,20 @@
 export default {
   players: [
     {
-      name: 'Bradley'
+      name: 'Bradley',
+      cards: []
     },
     {
-      name: 'Karen'
+      name: 'Karen',
+      cards: []
     },
     {
-      name: 'Brian'
+      name: 'Brian',
+      cards: []
     },
     {
-      name: 'Chump'
+      name: 'Chump',
+      cards: []
     }
   ],
   deck: {

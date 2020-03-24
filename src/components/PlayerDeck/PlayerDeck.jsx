@@ -8,9 +8,11 @@ export default class PlayerDeck extends React.Component {
       <div className="playerDeck">
         <div className="playerDeck__rotator">
           <div className="playerDeck__container">
-          <Card />
-          <Card />
-          <Card />
+          {
+            this.props.cards.map((card, i) => {
+              return <Card key={i} content={card} />
+            })
+          }
           </div>
         </div>
       </div>

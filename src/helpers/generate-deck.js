@@ -29,7 +29,7 @@ export default (ingredients, shuffle = true) => {
 
       case '1-9set':
       for (let i = 0; i < quantity; i++) {
-        for (let cardI = 0; cardI < 10; cardI++) {
+        for (let cardI = 1; cardI < 10; cardI++) {
           pack.push({
             type: 'standard',
             color: color,

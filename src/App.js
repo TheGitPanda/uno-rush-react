@@ -3,24 +3,56 @@ import './App.scss'
 import './Base.scss'
 import QuadrantZone from './components/QuadrantZone/QuadrantZone'
 import DebugPanel from './components/DebugPanel/DebugPanel'
+import MasterDeck from './components/MasterDeck/MasterDeck'
 import gameSettings from './gameSettings'
 import generateDeck from './helpers/generate-deck'
-import { onEvent } from './helpers/events'
+import { onEvent, triggerEvent } from './helpers/events'
 
-export default function App() {
+export default class App extends React.Component {
 
-  onEvent('Card/clicked', (id) => {
-    console.log(`a card was clicked called ${id}`)
-  })
+  constructor() {
+    super()
 
-  return (
-    <>
-    <QuadrantZone name="Bradley" position="1" />
-    <QuadrantZone name="Bradley" position="2" />
-    <QuadrantZone name="Bradley" position="3" />
-    <QuadrantZone name="Bradley" position="4" />
+    this.bindEvents()
 
-    <DebugPanel content={ JSON.stringify( generateDeck(gameSettings.deck.ingredients) , null, 2) } />
-    </>
-  )
+    // Setup
+    const { players, deck } = gameSettings
+    this.state = {
+      activePlayerTurn: 0,
+      players,
+      masterDeck: generateDeck(deck.ingredients)
+    }
+  }
+
+  bindEvents() {
+    onEvent('Card/clicked', () => {
+      const { players } = this.state
+
+      players[0].cards.push( this.retrieveCardFromMasterDeck() )
+      this.setState({
+        players,
+        masterDeck: this.state.masterDeck
+      })
+    })
+  }
+
+  retrieveCardFromMasterDeck() {
+    const pickedUpCard = this.state.masterDeck[0]
+    this.state.masterDeck.shift()
+    return pickedUpCard
+  }
+
+  render() {
+    return (
+      <>
+      {
+        this.state.players.map((player, id) => {
+          return (<QuadrantZone key={id} id={id} name={player.name} cards={player.cards} active={this.state.activePlayerTurn === id} />)
+        })
+      }
+      <MasterDeck cards={this.state.masterDeck} />
+      <DebugPanel content={ JSON.stringify( this.state , null, 2) } />
+      </>
+    )
+  }
 }

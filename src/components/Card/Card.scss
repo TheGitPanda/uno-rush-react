@@ -3,8 +3,8 @@
   position: relative;
   height: 160px;
   width: 110px;
-  background: red;
-  color: white;
+  background: black;
+  color: silver;
   box-sizing: border-box;
   border: white solid 5px;
 
@@ -36,7 +36,7 @@
     }
 
     &.flipped {
-      opacity: .4;
+      opacity: .2;
     }
   }
 
@@ -70,10 +70,26 @@
       right: 0;
     }
   }
+
+  &.red {
+    background: red;
+  }
+
+  &.yellow {
+    background: yellow;
+  }
+
+  &.green {
+    background: green;
+  }
+
+  &.blue {
+    background: blue;
+  }
 }
 
-.z-2,
-.z-3 {
+.z-1,
+.z-2 {
   .card {
     left: -51px;
   }
