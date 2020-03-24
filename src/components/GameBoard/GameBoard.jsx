@@ -1,7 +1,7 @@
 import React from 'react'
 import './GameBoard.scss'
-import QuadrantZone from './QuadrantZone'
-import DebugPanel from './debug/Panel'
+import QuadrantZone from '../QuadrantZone/QuadrantZone'
+import DebugPanel from '../DebugPanel/DebugPanel'
 
 export default class GameBoard extends React.Component {
   render() {

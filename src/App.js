@@ -1,5 +1,5 @@
 import React from 'react';
-import GameBoard from './components/GameBoard'
+import GameBoard from './components/GameBoard/GameBoard'
 import gameSettings from './gameSettings'
 import generateDeck from './helpers/generate-deck'
 

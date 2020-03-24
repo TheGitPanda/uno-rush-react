@@ -1,4 +1,4 @@
-.deck {
+.playerDeck {
   position: absolute;
   height: 50%;
   width: 70%;
@@ -43,7 +43,7 @@
 .z-2,
 .z-3 {
 
-  .deck__container {
+  .playerDeck__container {
     flex-direction: row-reverse;
   }
 }
@@ -51,47 +51,47 @@
 .z-3,
 .z-4 {
 
-  .deck__rotator,
-  .deck__container {
+  .playerDeck__rotator,
+  .playerDeck__container {
     bottom: auto;
     top: 0;
   }
 }
 
 .z-1 {
-  .deck {
+  .playerDeck {
     transform: translateX(-60%) translateY(-85%);
   }
 }
 
 .z-2 {
-  .deck {
+  .playerDeck {
     transform: translateX(-40%) translateY(-85%);
   }
 
-  .deck__rotator {
+  .playerDeck__rotator {
     transform-origin: top center;
     transform: rotate(-3deg) translateX(50%);
   }
 }
 
 .z-3 {
-  .deck {
+  .playerDeck {
     transform: translateX(-40%) translateY(-15%);
   }
 
-  .deck__rotator {
+  .playerDeck__rotator {
     transform-origin: bottom center;
     transform: rotate(3deg) translateX(50%);
   }
 }
 
 .z-4 {
-  .deck {
+  .playerDeck {
     transform: translateX(-60%) translateY(-15%);
   }
 
-  .deck__rotator {
+  .playerDeck__rotator {
     transform-origin: bottom right;
     transform: rotate(-3deg) translateX(50%);
   }
