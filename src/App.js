@@ -5,8 +5,8 @@ import QuadrantZone from './components/QuadrantZone/QuadrantZone'
 import DebugPanel from './components/DebugPanel/DebugPanel'
 import MasterDeck from './components/MasterDeck/MasterDeck'
 import gameSettings from './gameSettings'
-import generateDeck from './helpers/generate-deck'
-import { onEvent, triggerEvent } from './helpers/events'
+import setupGameWithState from './setupGameWithState'
+import { onEvent } from './helpers/events'
 
 export default class App extends React.Component {
 
@@ -15,31 +15,51 @@ export default class App extends React.Component {
 
     this.bindEvents()
 
-    // Setup
-    const { players, deck } = gameSettings
-    this.state = {
-      activePlayerTurn: 0,
-      players,
-      masterDeck: generateDeck(deck.ingredients)
-    }
+    // Setup the game
+    this.state = setupGameWithState(gameSettings)
+
+    // Distribute cards, new game
+    this.state.players.forEach((player, id) => {
+      this.dealCardsToPlayer(id, this.state.game.startingCards)
+    })
   }
 
   bindEvents() {
+    
     onEvent('Card/clicked', () => {
-      const { players } = this.state
+      this.state.players[0].cards.push( this.retrieveCardFromMasterDeck() )
+      this.setStateDefaults()
+    })
 
-      players[0].cards.push( this.retrieveCardFromMasterDeck() )
+    onEvent('GameLogic/go', () => {
       this.setState({
-        players,
-        masterDeck: this.state.masterDeck
+        activePlayerTurn: this.activePlayerTurn <= 3 ? this.activePlayerTurn++ : 0
       })
     })
+  }
+
+  dealCardsToPlayer(playerId, quantity) {
+    for (let i = 0; i < quantity; i++) {
+      this.state.players[playerId].cards.push( this.retrieveCardFromMasterDeck() )
+    }
   }
 
   retrieveCardFromMasterDeck() {
     const pickedUpCard = this.state.masterDeck[0]
     this.state.masterDeck.shift()
     return pickedUpCard
+  }
+
+  recycleCardToMasterDeck(card) {
+    this.state.masterDeck.push(card)
+    this.setStateDefaults()
+  }
+
+  setStateDefaults() {
+    this.setState({
+      players: this.state.players,
+      masterDeck: this.state.masterDeck
+    })
   }
 
   render() {

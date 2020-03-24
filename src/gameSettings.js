@@ -17,6 +17,9 @@ export default {
       cards: []
     }
   ],
+  game: {
+    startingCards: 7
+  },
   deck: {
     ingredients: [
       {

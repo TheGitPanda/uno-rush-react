@@ -7,20 +7,20 @@ export default class Card extends React.Component {
   constructor() {
     super()
     this.state = {
-      value: 1,
       flipped: false
     }
   }
 
   render() {
+    const { value, color } = this.props.content
     return (
-      <div className={ `card__wrapper${this.state.flipped ? ' flipped' : ''}` } onClick={() => this.handleClick(this.state.value)}>
-        <div className={`card ${this.props.content.color}`}>
+      <div className={ `card__wrapper${this.state.flipped ? ' flipped' : ''}` } onClick={() => this.handleClick(value)}>
+        <div className={`card ${color}`}>
           { this.props.type }
-          <div className="card__figure">{ this.props.content.value }</div>
-          <div className="card__figure">{ this.props.content.value }</div>
-          <div className="card__figure">{ this.props.content.value }</div>
-          <div className="card__figure">{ this.props.content.value }</div>
+          <div className="card__figure">{ value }</div>
+          <div className="card__figure">{ value }</div>
+          <div className="card__figure">{ value }</div>
+          <div className="card__figure">{ value }</div>
         </div>
       </div>
     );
