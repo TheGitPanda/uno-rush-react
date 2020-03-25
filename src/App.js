@@ -5,9 +5,10 @@ import QuadrantZone from './components/QuadrantZone/QuadrantZone'
 import Flower from './components/Flower/Flower'
 import DebugPanel from './components/DebugPanel/DebugPanel'
 import MasterDeck from './components/MasterDeck/MasterDeck'
+import PileDeck from './components/PileDeck/PileDeck'
 import gameSettings from './gameSettings'
 import setupGameWithState from './setupGameWithState'
-import { onEvent } from './helpers/events'
+import { onEvent, triggerEvent } from './helpers/events'
 
 export default class App extends React.Component {
 
@@ -33,6 +34,7 @@ export default class App extends React.Component {
     onEvent('Card/clicked', () => {
       this.state.players[0].cards.push( this.retrieveCardFromMasterDeck() )
       this.setStateDefaults()
+      triggerEvent('App/requests-flower-show')
     })
 
     onEvent('QuadrantZone/received-activity', () => {
@@ -43,6 +45,10 @@ export default class App extends React.Component {
 
     onEvent('GameLogic/go', () => {
       this.nextGo()
+    })
+
+    onEvent('Flower/color-selected', (color) => {
+      alert('You picked ' + color)
     })
   }
 
@@ -94,8 +100,9 @@ export default class App extends React.Component {
           return (<QuadrantZone key={id} id={id} player={player} active={this.state.activePlayerTurn === id} />)
         })
       }
-      <MasterDeck cards={this.state.masterDeck} />
-      <Flower />
+      <MasterDeck cards={ this.state.masterDeck } />
+      <PileDeck cards={ this.state.pileDeck } />
+      <Flower visible={ this.state.flowerVisible }/>
       <DebugPanel content={ JSON.stringify( this.state , null, 2) } />
       </>
     )

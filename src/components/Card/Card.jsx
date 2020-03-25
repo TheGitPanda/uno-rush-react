@@ -14,19 +14,24 @@ export default class Card extends React.Component {
   render() {
     const { value, color } = this.props.content
     return (
-      <div className={ `${this.props.noWrapper ? '' : 'card__wrapper'} ${this.state.flipped ? ' flipped' : ''}` } onClick={() => this.handleClick(value)}>
-        <div className={`card ${color}`}>
-          { this.props.type }
-          <div className="card__figure">{ value }</div>
-          <div className="card__figure">{ value }</div>
-          <div className="card__figure">{ value }</div>
-          <div className="card__figure">{ value }</div>
+      <div className={ `${this.props.noWrapper ? '' : 'card__wrapper'}` } onClick={() => this.handleClick(value)}>
+        <div className={`card ${color}${this.state.flipped ? ' flipped' : ''}`}>
+          <div className="card__front">
+            <div className="card__figure">{ value }</div>
+            <div className="card__figure">{ value }</div>
+            <div className="card__figure">{ value }</div>
+            <div className="card__figure">{ value }</div>
+          </div>
+          <div className="card__back">
+            <img src="/images/uno-logo.svg" alt="UNO!" />
+          </div>
         </div>
       </div>
     );
   }
 
   handleClick(id) {
-    triggerEvent('Card/clicked', id)
+    this.setState({flipped: !this.state.flipped})
+    // triggerEvent('Card/clicked', id)
   }
 }

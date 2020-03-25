@@ -11,6 +11,8 @@ export default (settings) => {
     game,
     // State variables for UI, main deck and game logic
     activePlayerTurn: -1,
-    masterDeck: generateDeck(deck.ingredients)
+    masterDeck: generateDeck(deck.ingredients),
+    pileDeck: generateDeck(deck.ingredients),
+    flowerVisible: false
   }
 }

@@ -1,3 +1,6 @@
+$Flower-petal-size-h: 60%;
+$Flower-petal-size-w: 40%;
+
 .flower {
   position: absolute;
   display: block;
@@ -6,7 +9,6 @@
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
-  background: rgba(white, .3);
   z-index: 1;
 
   &__petal {
@@ -17,33 +19,57 @@
     transform: translateX(-50%) translateY(-50%);
     transition: .2s;
     border-radius: 50%;
+    opacity: 0;
 
     &.red {
-      transform: translateX(-50%) translateY(-80%);
-      height: 50%;
-      width: 30%;
+      height: $Flower-petal-size-h;
+      width: $Flower-petal-size-w;
       background: red;
-    }
-
-    &.green {
-      transform: translateX(-80%) translateY(-50%);
-      height: 30%;
-      width: 50%;
-      background: green;
+      z-index: 1;
     }
 
     &.blue {
-      transform: translateX(-20%) translateY(-50%);
-      height: 30%;
-      width: 50%;
+      height: $Flower-petal-size-w;
+      width: $Flower-petal-size-h;
       background: blue;
+      z-index: 2;
     }
 
     &.yellow {
-      transform: translateX(-50%) translateY(-20%);
-      height: 50%;
-      width: 30%;
+      height: $Flower-petal-size-h;
+      width: $Flower-petal-size-w;
       background: yellow;
+      z-index: 3;
+    }
+
+    &.green {
+      height: $Flower-petal-size-w;
+      width: $Flower-petal-size-h;
+      background: green;
+      z-index: 4;
+    }
+  }
+
+  &.visible {
+
+    .flower__petal {
+      opacity: 1;
+
+      &.red {
+        transform: translateX(-50%) translateY(-80%);
+      }
+
+      &.green {
+        transform: translateX(-80%) translateY(-50%);
+      }
+
+      &.blue {
+        transform: translateX(-20%) translateY(-50%);
+      }
+
+      &.yellow {
+        transform: translateX(-50%) translateY(-20%);
+      }
     }
   }
 }
