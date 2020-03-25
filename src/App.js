@@ -2,6 +2,7 @@ import React from 'react'
 import './App.scss'
 import './Base.scss'
 import QuadrantZone from './components/QuadrantZone/QuadrantZone'
+import Flower from './components/Flower/Flower'
 import DebugPanel from './components/DebugPanel/DebugPanel'
 import MasterDeck from './components/MasterDeck/MasterDeck'
 import gameSettings from './gameSettings'
@@ -22,7 +23,6 @@ export default class App extends React.Component {
     })
 
     this.createDeadlineAction(() => {
-      return;
       this.setState({
         activePlayerTurn: 0
       })
@@ -95,6 +95,7 @@ export default class App extends React.Component {
         })
       }
       <MasterDeck cards={this.state.masterDeck} />
+      <Flower />
       <DebugPanel content={ JSON.stringify( this.state , null, 2) } />
       </>
     )

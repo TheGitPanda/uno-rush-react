@@ -6,7 +6,7 @@ export default class MasterDeck extends React.Component {
   render() {
     return (
       <div className="masterDeck">
-        <Card content={this.props.cards[0]} />
+        <Card no-wrapper content={this.props.cards[0]} />
       </div>
     );
   }

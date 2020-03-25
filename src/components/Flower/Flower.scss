@@ -1,0 +1,49 @@
+.flower {
+  position: absolute;
+  display: block;
+  width: 400px;
+  height: 400px;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background: rgba(white, .3);
+  z-index: 1;
+
+  &__petal {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    transition: .2s;
+    border-radius: 50%;
+
+    &.red {
+      transform: translateX(-50%) translateY(-80%);
+      height: 50%;
+      width: 30%;
+      background: red;
+    }
+
+    &.green {
+      transform: translateX(-80%) translateY(-50%);
+      height: 30%;
+      width: 50%;
+      background: green;
+    }
+
+    &.blue {
+      transform: translateX(-20%) translateY(-50%);
+      height: 30%;
+      width: 50%;
+      background: blue;
+    }
+
+    &.yellow {
+      transform: translateX(-50%) translateY(-20%);
+      height: 50%;
+      width: 30%;
+      background: yellow;
+    }
+  }
+}
