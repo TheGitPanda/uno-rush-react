@@ -2,19 +2,23 @@ export default {
   players: [
     {
       name: 'Bradley',
-      cards: []
+      cards: [],
+      ai: false
     },
     {
       name: 'Karen',
-      cards: []
+      cards: [],
+      ai: true
     },
     {
       name: 'Brian',
-      cards: []
+      cards: [],
+      ai: true
     },
     {
       name: 'Chump',
-      cards: []
+      cards: [],
+      ai: true
     }
   ],
   game: {

@@ -22,6 +22,7 @@ export default class App extends React.Component {
     })
 
     this.createDeadlineAction(() => {
+      return;
       this.setState({
         activePlayerTurn: 0
       })
@@ -90,7 +91,7 @@ export default class App extends React.Component {
       <>
       {
         this.state.players.map((player, id) => {
-          return (<QuadrantZone key={id} id={id} name={player.name} cards={player.cards} active={this.state.activePlayerTurn === id} />)
+          return (<QuadrantZone key={id} id={id} player={player} active={this.state.activePlayerTurn === id} />)
         })
       }
       <MasterDeck cards={this.state.masterDeck} />
