@@ -13,8 +13,6 @@ export default class App extends React.Component {
   constructor() {
     super()
 
-    this.bindEvents()
-
     // Setup the game
     this.state = setupGameWithState(gameSettings)
 
@@ -22,21 +20,46 @@ export default class App extends React.Component {
     this.state.players.forEach((player, id) => {
       this.dealCardsToPlayer(id, this.state.game.startingCards)
     })
-  }
 
-  bindEvents() {
-    
+    this.createDeadlineAction(() => {
+      this.setState({
+        activePlayerTurn: 0
+      })
+    }, 2)
+
+    // Events
+
     onEvent('Card/clicked', () => {
       this.state.players[0].cards.push( this.retrieveCardFromMasterDeck() )
       this.setStateDefaults()
     })
 
+    onEvent('QuadrantZone/received-activity', () => {
+      this.createDeadlineAction(() => {
+        this.nextGo()
+      }, this.state.game.timeToMakeMove)
+    })
+
     onEvent('GameLogic/go', () => {
-      this.setState({
-        activePlayerTurn: this.activePlayerTurn <= 3 ? this.activePlayerTurn++ : 0
-      })
+      this.nextGo()
     })
   }
+
+  // Time
+  createDeadlineAction(callback, durationSeconds) {
+    clearTimeout(this.timer)
+    this.timer = setTimeout(callback, durationSeconds * 1000)
+  }
+
+  // Moves
+  nextGo() {
+    const { game, activePlayerTurn } = this.state
+    this.setState({
+      activePlayerTurn: game.playDirection === 1 ? (activePlayerTurn < 3 ? activePlayerTurn + 1 : 0) : (activePlayerTurn > 0 ? activePlayerTurn - 1 : 3)
+    })
+  }
+
+  // Card / Deal Handling
 
   dealCardsToPlayer(playerId, quantity) {
     for (let i = 0; i < quantity; i++) {

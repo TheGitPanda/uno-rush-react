@@ -18,7 +18,9 @@ export default {
     }
   ],
   game: {
-    startingCards: 7
+    startingCards: 7,
+    timeToMakeMove: 2,
+    playDirection: 1 // or -1
   },
   deck: {
     ingredients: [

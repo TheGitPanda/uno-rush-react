@@ -8,7 +8,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
+
   &:after {
     content: '';
     position: absolute;
@@ -16,7 +16,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(white, .9);
+    background: rgba(blue, .9);
   }
 }
 
