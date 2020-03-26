@@ -1,6 +1,6 @@
 import React from 'react'
 import './Card.scss'
-import { triggerEvent } from '../../helpers/events'
+import CardIcon from './CardIcon/CardIcon'
 
 export default class Card extends React.Component {
 
@@ -21,6 +21,7 @@ export default class Card extends React.Component {
             <div className="card__figure">{ value }</div>
             <div className="card__figure">{ value }</div>
             <div className="card__figure">{ value }</div>
+            <CardIcon color={ color } value={ value } />
           </div>
           <div className="card__back">
             <img src="/images/uno-logo.svg" alt="UNO!" />
