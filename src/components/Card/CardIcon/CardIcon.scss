@@ -1,3 +1,5 @@
+@import "../../../Base.scss";
+
 .cardIcon {
   display: flex;
   flex-direction: column;
@@ -30,18 +32,18 @@
   }
 
   &.red {
-    color: red;
+    color: darken($color-red, 10%);
   }
 
   &.green {
-    color: green;
+    color: darken($color-green, 10%);
   }
 
   &.blue {
-    color: blue;
+    color: darken($color-blue, 10%);
   }
 
   &.yellow {
-    color: yellow;
+    color: darken($color-yellow, 10%);
   }
 }

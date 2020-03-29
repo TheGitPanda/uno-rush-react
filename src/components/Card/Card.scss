@@ -1,3 +1,5 @@
+@import "../../Base.scss";
+
 .card {
   display: block;
   position: relative;
@@ -11,43 +13,19 @@
   transform-style: preserve-3d;
 
   &.red {
-    background: red;
+    background: $color-red;
   }
 
   &.yellow {
-    background: yellow;
+    background: $color-yellow;
   }
 
   &.green {
-    background: green;
+    background: $color-green;
   }
 
   &.blue {
-    background: blue;
-  }
-
-  &__wrapper {
-    position: relative;
-    max-width: 60px;
-    // perspective: 600px;
-
-    &:nth-child(8) {
-      min-width: 20px;
-    }
-
-    &:nth-child(7) {
-      min-width: 10px;
-    }
-
-    &:nth-child(n+9) {
-      min-width: 30px;
-    }
-
-    @for $i from 1 through 8 {
-      &:nth-child(#{$i}) {
-        z-index: #{$i};
-      }
-    }
+    background: $color-blue;
   }
 
   &.flipped {
@@ -72,10 +50,11 @@
   }
 
   &__back {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg) translate3d(0,0,0);
     background: black;
 
     img {
+      display: none;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -112,11 +91,10 @@
       right: 0;
     }
   }
-}
 
-.z-1,
-.z-2 {
-  .card {
-    left: -51px;
+  @for $i from 1 through 8 {
+    &:nth-child(#{$i}) {
+      z-index: #{$i};
+    }
   }
 }

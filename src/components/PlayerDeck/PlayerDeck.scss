@@ -37,9 +37,21 @@
     right: 50%;
     width: 50%;
   }
+
+  &__slot {
+    position: absolute;
+    bottom: 0;
+    width: auto;
+    transition: .2s;
+
+    &:last-child {
+      transform: translateX(0);
+    }
+  }
 }
 
-// Layout overrides
+// Layout
+
 .z-1,
 .z-2 {
 
@@ -52,15 +64,18 @@
 .z-3 {
 
   .playerDeck__rotator,
-  .playerDeck__container {
+  .playerDeck__container,
+  .playerDeck__slot {
     bottom: auto;
     top: 0;
   }
 }
 
+// Rotator origins
+
 .z-0 {
   .playerDeck {
-    transform: translateX(-60%) translateY(-85%);
+    transform: translateX(-50%) translateY(-85%);
   }
 }
 
@@ -94,5 +109,35 @@
   .playerDeck__rotator {
     transform-origin: bottom right;
     transform: rotate(-3deg) translateX(50%);
+  }
+}
+
+// Card slot animation and position implementation
+
+// Left side
+.z-0,
+.z-3 {
+  .playerDeck__slot {
+    right: 0;
+
+    @for $i from 1 through 8 {
+      &:nth-last-child(#{$i + 1}) {
+        transform: translateX(-#{$i * 40}px);
+      }
+    }
+  }
+}
+
+// Right side
+.z-1,
+.z-2 {
+  .playerDeck__slot {
+    left: 0;
+
+    @for $i from 1 through 8 {
+      &:nth-last-child(#{$i + 1}) {
+        transform: translateX(#{$i * 40}px);
+      }
+    }
   }
 }

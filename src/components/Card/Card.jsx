@@ -14,18 +14,16 @@ export default class Card extends React.Component {
   render() {
     const { value, color } = this.props.content
     return (
-      <div className={ `${this.props.noWrapper ? '' : 'card__wrapper'}` } onClick={() => this.handleClick(value)}>
-        <div className={`card ${color}${this.state.flipped ? ' flipped' : ''}`}>
-          <div className="card__front">
-            <div className="card__figure">{ value }</div>
-            <div className="card__figure">{ value }</div>
-            <div className="card__figure">{ value }</div>
-            <div className="card__figure">{ value }</div>
-            <CardIcon color={ color } value={ value } />
-          </div>
-          <div className="card__back">
-            <img src="/images/uno-logo.svg" alt="UNO!" />
-          </div>
+      <div className={`card ${color}${this.state.flipped ? ' flipped' : ''}`} onClick={() => this.handleClick(value)}>
+        <div className="card__front">
+          <div className="card__figure">{ value }</div>
+          <div className="card__figure">{ value }</div>
+          <div className="card__figure">{ value }</div>
+          <div className="card__figure">{ value }</div>
+          <CardIcon color={ color } value={ value } />
+        </div>
+        <div className="card__back">
+          <img src="/images/uno-logo.svg" alt="UNO!" />
         </div>
       </div>
     );

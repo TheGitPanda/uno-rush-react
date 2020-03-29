@@ -10,7 +10,11 @@ export default class PlayerDeck extends React.Component {
           <div className="playerDeck__container">
           {
             this.props.cards.map((card, i) => {
-              return <Card key={i} content={card} />
+              return (
+                <div className="playerDeck__slot">
+                  <Card key={i} content={card} />
+                </div>
+              )
             })
           }
           </div>

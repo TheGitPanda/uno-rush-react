@@ -48,10 +48,15 @@ export default class QuadrantZone extends React.Component {
   render() {
     const { cards, name } = this.props.player
     return (
-      <div className={`quadrantZone z-${ this.props.id } ${ this.props.active ? 'active' : '' }`}>
+      <div className={`quadrantZone z-${ this.props.id } ${ this.props.active ? 'active' : '' }`} onClick={ () => this.removeCards }>
         <PlayerDeck cards={ cards } />
         <PlayerInfo name={ name } />
       </div>
     );
+  }
+
+  removeCards() {
+    this.props.player.cards.shift()
+    this.render()
   }
 }
