@@ -1,25 +1,14 @@
 import React from 'react'
 import './PlayerDeck.scss'
-import Card from '../Card/Card'
+import AiInterface from './AiInterface/AiInterface'
+import HumanInterface from './HumanInterface/HumanInterface'
 
 export default class PlayerDeck extends React.Component {
+
   render() {
+    const { ai, cards } = this.props.player
     return (
-      <div className="playerDeck">
-        <div className="playerDeck__rotator">
-          <div className="playerDeck__container">
-          {
-            this.props.cards.map((card, i) => {
-              return (
-                <div className="playerDeck__slot">
-                  <Card key={i} content={card} />
-                </div>
-              )
-            })
-          }
-          </div>
-        </div>
-      </div>
-    );
+      ai ? <AiInterface id={ this.props.id } cards={ cards } /> : <HumanInterface id={ this.props.id } cards={ cards } />
+    )
   }
 }

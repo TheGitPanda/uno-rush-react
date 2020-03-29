@@ -1,0 +1,48 @@
+@import "../../../Base.scss";
+
+.humanInterface {
+  position: absolute;
+  height: 50%;
+  width: 70%;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(yellow, .2);
+  display: block;
+  z-index: 2;
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: $card-height;
+    left: 0;
+  }
+
+  &__slot {
+    position: relative;
+    width: auto;
+    transition: .1s;
+    max-width: 60px;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+    
+    &:hover {
+      transform: translateY(-10%) !important;
+    }
+
+    @for $i from 1 through 8 {
+      &:nth-child(#{$i + 1}) {
+        z-index: $i;
+        transform: rotate(#{$i * .5}deg);
+      }
+    }
+  }
+}

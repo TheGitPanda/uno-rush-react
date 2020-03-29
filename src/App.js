@@ -1,11 +1,11 @@
 import React from 'react'
 import './App.scss'
 import './Base.scss'
-import QuadrantZone from './components/QuadrantZone/QuadrantZone'
 import Flower from './components/Flower/Flower'
 import DebugPanel from './components/DebugPanel/DebugPanel'
 import MasterDeck from './components/MasterDeck/MasterDeck'
 import PileDeck from './components/PileDeck/PileDeck'
+import PlayerDeck from './components/PlayerDeck/PlayerDeck'
 import gameSettings from './gameSettings'
 import setupGameWithState from './setupGameWithState'
 import { onEvent, triggerEvent } from './helpers/events'
@@ -97,7 +97,7 @@ export default class App extends React.Component {
       <>
       {
         this.state.players.map((player, id) => {
-          return (<QuadrantZone key={id} id={id} player={player} active={this.state.activePlayerTurn === id} />)
+          return (<PlayerDeck key={id} id={id} player={player} active={this.state.activePlayerTurn === id} />)
         })
       }
       <MasterDeck cards={ this.state.masterDeck } />

@@ -1,5 +1,5 @@
 body {
-  background: url(/images/ghost.jpg) no-repeat center;
+  background: url(/images/uno-new-gen-ghost.jpg) no-repeat center;
   background-size: cover;
   height: 100vh;
   margin: 0;
@@ -22,4 +22,8 @@ body {
 
 #root {
   height: 100%;
+}
+
+* {
+  user-select: none;
 }

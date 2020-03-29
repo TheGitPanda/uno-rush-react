@@ -4,17 +4,10 @@ import CardIcon from './CardIcon/CardIcon'
 
 export default class Card extends React.Component {
 
-  constructor() {
-    super()
-    this.state = {
-      flipped: false
-    }
-  }
-
   render() {
     const { value, color } = this.props.content
     return (
-      <div className={`card ${color}${this.state.flipped ? ' flipped' : ''}`} onClick={() => this.handleClick(value)}>
+      <div className={ this.parentClassName(color) } onClick={() => this.handleClick(value)}>
         <div className="card__front">
           <div className="card__figure">{ value }</div>
           <div className="card__figure">{ value }</div>
@@ -29,8 +22,12 @@ export default class Card extends React.Component {
     );
   }
 
+  parentClassName(color) {
+    return `card ${color}${this.props.flipped ? ' flipped' : ''}${this.props.draggable ? ' draggable' : ''}`
+  }
+
   handleClick(id) {
-    this.setState({flipped: !this.state.flipped})
+    this.setState({flipped: !this.props.flipped})
     // triggerEvent('Card/clicked', id)
   }
 }

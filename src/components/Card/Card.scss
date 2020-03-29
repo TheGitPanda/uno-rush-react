@@ -3,14 +3,15 @@
 .card {
   display: block;
   position: relative;
-  height: 160px;
-  width: 110px;
+  height: $card-height;
+  width: $card-width;
   background: black;
   color: silver;
   box-sizing: border-box;
   border: white solid 5px;
   transition: transform .2s;
   transform-style: preserve-3d;
+  border-radius: 10px;
 
   &.red {
     background: $color-red;
@@ -54,7 +55,6 @@
     background: black;
 
     img {
-      display: none;
       position: absolute;
       top: 50%;
       left: 50%;
