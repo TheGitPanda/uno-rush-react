@@ -1,4 +1,4 @@
-import shuffleArray from './shuffle-array'
+import { shuffleArray } from './array'
 
 export default (ingredients, shuffle = true) => {
   let pack = []

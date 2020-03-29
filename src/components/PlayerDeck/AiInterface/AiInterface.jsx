@@ -9,8 +9,8 @@ export default class AiInterface extends React.Component {
       {
         this.props.cards.map((card, i) => {
           return (
-            <div className="aiInterface__slot">
-              <Card key={i} content={card} flipped={ true } />
+            <div className="aiInterface__slot" key={i}>
+              <Card content={card} flipped={ true } />
             </div>
           )
         })

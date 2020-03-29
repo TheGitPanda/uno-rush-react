@@ -1,4 +1,6 @@
-export default {
+import generateDeck from './generate-deck'
+
+export const settings = {
   players: [
     {
       name: 'Bradley',
@@ -57,5 +59,25 @@ export default {
         quantity: 1
       }
     ]
+  }
+}
+
+export default () => {
+
+  const { players, deck, game } = settings
+
+  const newDeck = generateDeck(deck.ingredients)
+  const startingCard = newDeck[0]
+
+  return {
+    // Cache original settings
+    players,
+    deck,
+    game,
+    // State variables for UI, main deck and game logic
+    activePlayerTurn: -1,
+    masterDeck: newDeck,
+    pileDeck: [ startingCard ],
+    flowerVisible: false
   }
 }

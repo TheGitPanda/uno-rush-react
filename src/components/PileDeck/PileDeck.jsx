@@ -6,7 +6,7 @@ export default class PileDeck extends React.Component {
   render() {
     return (
       <div className="pileDeck">
-        <Card no-wrapper content={this.props.cards[0]} />
+        <Card no-wrapper content={this.props.cards[this.props.cards.length - 1]} />
       </div>
     );
   }

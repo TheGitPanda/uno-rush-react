@@ -8,7 +8,7 @@
   justify-content: center;
   height: $card-height;
   width: 70%;
-  bottom: 0;
+  bottom: -30px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
@@ -18,14 +18,15 @@
     width: auto;
     transition: .1s;
     max-width: 60px;
-    cursor: grab;
-
-    &:active {
-      cursor: grabbing;
-    }
+    cursor: pointer;
 
     &:hover {
       transform: translateY(-10%) !important;
+    }
+
+    &.selected {
+      transform: translateY(-40%) rotate(0) !important;
+      box-shadow: 0px 0px 20px rgba(black, .5);
     }
 
     @for $i from 1 through 8 {

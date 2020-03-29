@@ -1,6 +1,6 @@
 import React from 'react'
 import './Flower.scss'
-import { triggerEvent } from '../../helpers/events'
+import { triggerEvent } from '../../helpers/event'
 
 export default class Flower extends React.Component {
 

@@ -1,14 +1,16 @@
 import React from 'react'
 import './HumanInterface.scss'
 import Card from '../../Card/Card'
-import { keyQuery } from '../../../helpers/keypress-mappings'
-import { triggerEvent } from '../../../helpers/events'
+import { triggerEvent } from '../../../helpers/event'
 
 export default class HumanInterface extends React.Component {
 
   constructor() {
     super()
-    this.bindKeysForHuman()
+
+    this.state = {
+      selectedCard: null
+    }
   }
 
   render() {
@@ -17,8 +19,8 @@ export default class HumanInterface extends React.Component {
         {
           this.props.cards.map((card, i) => {
             return (
-              <div className="humanInterface__slot">
-                <Card key={i} content={card} draggable={ true } />
+              <div key={i} className={ `humanInterface__slot${ this.state.selectedCard === i ? ' selected' : '' }` } onClick={ () => this.selectCard(i) }>
+                <Card content={card} draggable={ true } />
               </div>
             )
           })
@@ -27,20 +29,27 @@ export default class HumanInterface extends React.Component {
     );
   }
 
-  bindKeysForHuman() {
-    document.addEventListener('keydown', (e) => {
-      switch (keyQuery(e)) {
-        case 'left':
-        // TODO smooth repaints for user to change order of cards, requestKeyframeAnimation
-        break;
-        case 'right':
-        // TODO
-        break;
-        case 'up':
-        triggerEvent('GameLogic/go')
-        break;
-        default:
+  selectCard(cardId) {
+
+    const { selectedCard } = this.state
+
+    if (selectedCard !== null) {
+
+      if (cardId !== selectedCard) {
+        triggerEvent('HumanInterface/card-ordering-swap', {
+          sourceId: this.state.selectedCard,
+          targetId: cardId,
+          playerId: this.props.id
+        })
       }
-    })
+
+      this.setState({
+        selectedCard: null
+      })
+    } else {
+      this.setState({
+        selectedCard: cardId
+      })
+    }
   }
 }
