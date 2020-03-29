@@ -14,7 +14,6 @@ export default class HumanInterface extends React.Component {
   render() {
     return (
       <div className="humanInterface">
-        <div className="humanInterface__container">
         {
           this.props.cards.map((card, i) => {
             return (
@@ -24,7 +23,6 @@ export default class HumanInterface extends React.Component {
             )
           })
         }
-        </div>
       </div>
     );
   }

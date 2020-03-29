@@ -1,5 +1,6 @@
 body {
-  background: url(/images/uno-new-gen-ghost.jpg) no-repeat center;
+  // background: url(/images/uno-new-gen-ghost.jpg) no-repeat center;
+  background: blue;
   background-size: cover;
   height: 100vh;
   margin: 0;
@@ -8,6 +9,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+#root {
+  display: block;
+  position: absolute;
+  perspective: 600px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 
   &:after {
     content: '';
@@ -16,12 +28,8 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(blue, .9);
+    // background: rgba(red, .8);
   }
-}
-
-#root {
-  height: 100%;
 }
 
 * {

@@ -1,7 +1,21 @@
 .masterDeck {
   position: absolute;
+  display: block;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%) translateY(20%) rotate(4deg);
-  z-index: 1;
+  pointer-events: none;
+
+  &__container {
+    top: 0;
+    left: 25%;
+    display: block;
+    position: absolute;
+    pointer-events: painted;
+    transform: scale(.7) rotateY(4deg) rotateX(32deg) rotate(-57deg) translateX(-60px) translateY(60px);
+    transform-origin: center;
+    box-shadow: 0px 0px 30px black;
+  }
 }

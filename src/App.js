@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.scss'
 import './Base.scss'
+import Board from './components/Board/Board'
 import Flower from './components/Flower/Flower'
 import DebugPanel from './components/DebugPanel/DebugPanel'
 import MasterDeck from './components/MasterDeck/MasterDeck'
@@ -101,6 +102,7 @@ export default class App extends React.Component {
         })
       }
       <MasterDeck cards={ this.state.masterDeck } />
+      <Board />
       <PileDeck cards={ this.state.pileDeck } />
       <Flower visible={ this.state.flowerVisible }/>
       <DebugPanel content={ JSON.stringify( this.state , null, 2) } />

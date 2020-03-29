@@ -1,44 +1,32 @@
 .aiInterface {
+  display: flex;
   position: absolute;
-  display: block;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  width: 400px;
   z-index: 2;
-  perspective: 600px;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
 
-  &__container {
-    display: flex;
-    position: absolute;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
-    width: 400px;
-    z-index: 2;
+  &.z-1 {
+    top: 50%;
+    left: 0;
+    transform: rotateY(6deg) rotateZ(-6deg) rotateX(-1deg) scale(.7) rotate(-15deg) translateY(-140px);
+    transform-origin: top right;
+  }
 
-    &.z-1 {
-      top: 50%;
-      left: 0;
-      transform: rotateY(6deg) rotateZ(-6deg) rotateX(-1deg) scale(.7) rotate(-15deg) translateY(-140px);
-      transform-origin: top right;
-    }
+  &.z-2 {
+    top: 0;
+    left: 50%;
+    width: 600px;
+    transform: translateX(-50%) scale(.6) translateY(50px);
+    transform-origin: top center;
+  }
 
-    &.z-2 {
-      top: 0;
-      left: 50%;
-      width: 600px;
-      transform: translateX(-50%) scale(.6) translateY(50px);
-      transform-origin: top center;
-    }
-
-    &.z-3 {
-      top: 50%;
-      right: 0;
-      transform: rotateY(-6deg) rotateZ(6deg) rotateX(1deg) scale(.7) rotate(15deg) translateY(-140px);
-      transform-origin: top left;
-    }
+  &.z-3 {
+    top: 50%;
+    right: 0;
+    transform: rotateY(-6deg) rotateZ(6deg) rotateX(1deg) scale(.7) rotate(15deg) translateY(-140px);
+    transform-origin: top left;
   }
 
   &__slot {

@@ -1,31 +1,45 @@
 .board {
   display: block;
   position: absolute;
-  width: 50%;
-  height: 50%;
-  overflow: hidden;
+  top: 55%;
+  left: 50%;
+  width: 70vh;
+  height: auto;
+  border-radius: 50%;
+  transform: translateY(-50%) translateX(-50%) rotateX(45deg) translateZ(0);
+  transform-origin: top center;
+  z-index: 1;
+  background-image: radial-gradient(circle closest-side, rgba(white, .4), rgba(white, 0));
+  pointer-events: none;
 
-  &.active {
-    background: rgba(black, .9);
+  &:after {
+    content: '';
+    display: block;
+    padding-top: 100%;
   }
 
-  &.z-0 {
-    left: 0;
-    top: 0;
-  }
+  &__arrows {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    width: 70vh;
+    height: auto;
+    transform: translateY(-50%) translateZ(0) translateX(-50%) rotateX(45deg);
+    animation: spincw 30s linear;
+    animation-iteration-count: infinite;
+    transform-origin: center;
+    opacity: .4;
 
-  &.z-1 {
-    right: 0;
-    top: 0;
+    &:after {
+      content: '';
+      display: block;
+      padding-top: 100%;
+    }
   }
+}
 
-  &.z-2 {
-    right: 0;
-    bottom: 0;
-  }
-
-  &.z-3 {
-    left: 0;
-    bottom: 0;
+@keyframes spincw {
+  100% {
+    transform: translateY(-50%) translateZ(0) translateX(-50%) rotateX(45deg) rotate(360deg);
   }
 }
