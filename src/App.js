@@ -13,7 +13,8 @@ import setupGameWithState from './helpers/setup-game-with-state'
 import { onEvent, triggerEvent } from './helpers/event'
 import { swapArrayIndexes } from './helpers/array'
 import {
-  compareCardValidity
+  compareCardValidity,
+  resetCard
 } from './helpers/uno'
 
 export default class App extends React.Component {
@@ -48,12 +49,15 @@ export default class App extends React.Component {
 
     onEvent('GameLogic/timer-reached-zero', () => {
       triggerEvent('GameLogic/force-autoplay-card')
-      triggerEvent('GameLogic/next-go')
+
+      this.createDeadlineAction(() => {
+        triggerEvent('GameLogic/next-go')
+      }, .5)
     })
 
-    onEvent('HumanInterface/card-ordering-swap', (cEvent) => {
+    onEvent('HumanInterface/card-ordering-swap', (ce) => {
       const { players } = this.state
-      const { playerId, sourceId, targetId } = cEvent
+      const { playerId, sourceId, targetId } = ce
       players[playerId].cards = swapArrayIndexes(players[playerId].cards, sourceId, targetId)
       this.setState({
         players
@@ -69,16 +73,28 @@ export default class App extends React.Component {
       }
     })
 
-    // DEBUG
-    // onEvent('Card/clicked', () => {
-    //   this.state.players[0].cards.push( this.retrieveCardFromMasterDeck() )
-    //   this.setStateDefaults()
-    //   triggerEvent('App/requests-flower-show')
-    // })
-
-    onEvent('Flower/color-selected', (color) => {
-      alert('You picked ' + color)
+    onEvent('GameLogic/card-added-to-pile', (ce) => {
+      if (ce.card.type.startsWith('wild')) {
+        triggerEvent('GameLogic/requests-flower')
+      }
     })
+
+    onEvent('GameLogic/requests-flower', () => {
+      this.setState({
+        flowerVisible: true
+      })
+      this.createDeadlineAction(() => {
+        triggerEvent('Flower/selected-color', {
+          color: 'red'
+        })
+      }, 3)
+    })
+
+    onEvent('Flower/selected-color', (ce) => {
+      this.setPileWildColor(ce.color)
+      triggerEvent('GameLogic/next-go')
+    })
+
     // END DEBUG
 
     // Start the game
@@ -118,7 +134,7 @@ export default class App extends React.Component {
   }
 
   recycleCardToMasterDeck(card) {
-    this.state.masterDeck.push(card)
+    this.state.masterDeck.push( resetCard(card) )
     this.setStateDefaults()
   }
 
@@ -135,6 +151,10 @@ export default class App extends React.Component {
     this.setState({
       players,
       pileDeck
+    })
+
+    triggerEvent('GameLogic/card-added-to-pile', {
+      card
     })
   }
 
@@ -154,6 +174,17 @@ export default class App extends React.Component {
   getActivePileCard() {
     const { pileDeck } = this.state
     return pileDeck[pileDeck.length - 1]
+  }
+
+  setPileWildColor(color) {
+    const card = this.getActivePileCard()
+    card.color = color
+    const { pileDeck } = this.state
+    pileDeck[pileDeck.length - 1] = card
+    this.setState({
+      pileDeck,
+      flowerVisible: false
+    })
   }
 
   render() {

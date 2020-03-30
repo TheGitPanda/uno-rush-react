@@ -13,6 +13,7 @@ export default (ingredients, shuffle = true) => {
       for (let i = 0; i < quantity; i++) {
         pack.push({
           type: 'wild',
+          color: null,
           value: 0
         })
       }
@@ -22,6 +23,7 @@ export default (ingredients, shuffle = true) => {
       for (let i = 0; i < quantity; i++) {
         pack.push({
           type: 'wilddraw',
+          color: null,
           value: 4
         })
       }

@@ -16,6 +16,8 @@ export default class Flower extends React.Component {
   }
 
   selectColor(color) {
-    triggerEvent('Flower/color-selected', color)
+    triggerEvent('Flower/selected-color', {
+      color
+    })
   }
 }

@@ -12,3 +12,12 @@ export function compareCardValidity(pileCard, attemptingCard) {
 
   return false
 }
+
+export function resetCard(card) {
+
+  if (card.type.startsWith('wild')) {
+    card.color = null
+  }
+
+  return card
+}

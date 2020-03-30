@@ -6,7 +6,7 @@ export default class Card extends React.Component {
 
   render() {
     const { value, color, type } = this.props.content
-    let valueText = type.startsWith('wild') ? `+${value}` : value
+    let valueText = type.startsWith('wild') ? (value ? `+${value}` : '') : value
     return (
       <div className={ this.parentClassName(color) } onClick={() => this.handleClick(value)}>
         <div className="card__front">
@@ -14,7 +14,7 @@ export default class Card extends React.Component {
           <div className="card__figure">{ valueText }</div>
           <div className="card__figure">{ valueText }</div>
           <div className="card__figure">{ valueText }</div>
-          <CardIcon color={ color } value={ value } />
+          <CardIcon color={ color } value={ value } type={ type } />
         </div>
         <div className="card__back">
           <img src="/images/uno-logo.svg" alt="UNO!" />
