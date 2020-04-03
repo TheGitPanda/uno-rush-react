@@ -58,6 +58,8 @@ export default function (app) {
     players[playerId].cards = swapArrayIndexes(players[playerId].cards, sourceId, targetId)
     app.setState({
       players
+    }, () => {
+      triggerEvent('Game/human-card-swapped', targetId)
     })
   })
 

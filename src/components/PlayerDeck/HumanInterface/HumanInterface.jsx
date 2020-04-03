@@ -1,7 +1,7 @@
 import React from 'react'
 import './HumanInterface.scss'
 import Card from '../../Card/Card'
-import { triggerEvent } from '../../../helpers/event'
+import { triggerEvent, onEvent } from '../../../helpers/event'
 
 export default class HumanInterface extends React.Component {
 
@@ -11,15 +11,19 @@ export default class HumanInterface extends React.Component {
     this.state = {
       selectedCard: null
     }
+
+    onEvent('Game/human-card-swapped', (id) => {
+      this.selectCard(id)
+    })
   }
 
   render() {
     return (
-      <div className="humanInterface">
+      <div className="humanInterface" onMouseUp={ () => this.deselectCard() }>
         {
           this.props.cards.map((card, i) => {
             return (
-              <div key={i} className={ `humanInterface__slot${ this.state.selectedCard === i ? ' selected' : '' }` } onClick={ () => this.selectCard(i) }>
+              <div key={i} className={ `humanInterface__slot${ this.state.selectedCard === i ? ' selected' : '' }` } onMouseDown={ () => this.selectCard(i) } onMouseEnter={ () => this.swapCardTo(i) }>
                 <Card content={card} draggable={ true } />
               </div>
             )
@@ -29,27 +33,30 @@ export default class HumanInterface extends React.Component {
     );
   }
 
-  selectCard(cardId) {
+  selectCard(id) {
+    this.setState({
+      selectedCard: id
+    })
+  }
+
+  swapCardTo(i) {
+
+    if (this.state.selectedCard === null) {
+      return
+    }
 
     const { selectedCard } = this.state
+    triggerEvent('HumanInterface/card-ordering-swap', {
+      sourceId: selectedCard,
+      targetId: i,
+      playerId: this.props.id
+    })
+  }
 
-    if (selectedCard !== null) {
+  deselectCard() {
 
-      if (cardId !== selectedCard) {
-        triggerEvent('HumanInterface/card-ordering-swap', {
-          sourceId: this.state.selectedCard,
-          targetId: cardId,
-          playerId: this.props.id
-        })
-      }
-
-      this.setState({
-        selectedCard: null
-      })
-    } else {
-      this.setState({
-        selectedCard: cardId
-      })
-    }
+    this.setState({
+      selectedCard: null
+    })
   }
 }

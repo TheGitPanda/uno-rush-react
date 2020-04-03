@@ -33,7 +33,7 @@ export default class App extends React.Component {
 
     // Start the game
     setTimeout(() => {
-      // triggerEvent('GameLogic/next-go')
+      triggerEvent('GameLogic/next-go')
     }, 1000)
   }
 
